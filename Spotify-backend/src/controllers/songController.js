@@ -41,6 +41,15 @@ const addSong = async (req, res) => {
   }
 };
 
+const listSong = async (req, res) => {
+  try {
+const allSongs = await songModel.find({});
+res.json({success:true, songs:allSongs});
+  }catch {
+  res.json({success:false});
+  }
+};
+
 const removeSong = async (req, res) => {
     try {
       await songModel.findByIdAndDelete(req.body.id);
@@ -50,6 +59,6 @@ const removeSong = async (req, res) => {
     }
 }
 
-const listSong = async (req, res) => {};
+
 
 export { addSong, listSong, removeSong};
